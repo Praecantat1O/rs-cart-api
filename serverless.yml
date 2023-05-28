@@ -2,7 +2,6 @@ service: serverless-nestjs
 
 frameworkVersion: '3'
 
-
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin

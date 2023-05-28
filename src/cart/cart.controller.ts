@@ -19,7 +19,6 @@ export class CartController {
   // @UseGuards(BasicAuthGuard)
   @Get()
   async findUserCart(@Req() req: AppRequest) {
-    console.log('REQUEST!!!!!', req)
     const cart = await this.cartService.findOrCreateByUserId(getUserIdFromRequest(req));
 
     return {
