@@ -1,0 +1,33 @@
+service: serverless-nestjs
+
+frameworkVersion: '3'
+
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: development
+  region: us-east-1
+  environment:
+    PG_USER: ${env:PG_USER}
+    PG_HOST: ${env:PG_HOST}
+    PG_DATABASE: ${env:PG_DATABASE}
+    PG_PASS: ${env:PG_PASS}
+    PG_PORT: ${env:PG_PORT}
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
